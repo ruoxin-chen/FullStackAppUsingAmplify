@@ -1,3 +1,11 @@
+.DS_Store
+node_modules
+.tmp
+npm-debug.log
+.parcel-cache/
+dist/
+.history
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*

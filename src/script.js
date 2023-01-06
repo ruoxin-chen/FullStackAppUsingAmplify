@@ -1,35 +1,74 @@
-import Amplify, { DataStore } from "aws-amplify";
+import Amplify, { DataStore, Auth, Storage } from "aws-amplify";
 import awsconfig from "./aws-exports";
-import { Post } from "./models";
+import { Post, Author } from "./models";
 
 Amplify.configure(awsconfig);
 
-document.getElementById('create-post').addEventListener('click', async e => {
+document.getElementById('create-post').addEventListener('submit', async e => {
     e.preventDefault()
   
     try {
+      const file = document.getElementById('img').files[0]
+      await Storage.put(file.name, file) // Store it in DynamoDB, S3
+
       const newPost = await DataStore.save(new Post({
-        description: 'Felt cute might delete',
-        link: 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia.sproutsocial.com%2Fuploads%2F2017%2F01%2FInstagram-Post-Ideas.png&imgrefurl=https%3A%2F%2Fsproutsocial.com%2Finsights%2Finstagram-post-ideas%2F&tbnid=Ef8eIRB65WP7xM&vet=12ahUKEwjIvsW6hq_8AhVSn3IEHdv_CsYQMygIegUIARDvAQ..i&docid=3tJIPozOzHHXUM&w=780&h=460&q=post%20image&ved=2ahUKEwjIvsW6hq_8AhVSn3IEHdv_CsYQMygIegUIARDvAQ'
-      }))
+        description: document.getElementById('description').value, // input text in index.html
+        image: file.name
+    }))
+
       console.log(newPost)
     } catch (err) {
       console.log(err)
     }
   })
-  
-// let currentUser = null
 
-// const toggleNavBar = () => {
-//   if (currentUser) {
-//     document.querySelector('.logged-in').classList.add('hidden')
-//     document.querySelector('.logged-in').classList.add('hidden')
-//     document.querySelector('#sign-out').classList.remove('hidden')
-//     document.querySelector('#create-post').classList.remove('hidden')
-//   } else {
-//     document.querySelector('.logged-in').classList.remove('hidden')
-//     document.querySelector('.logged-in').classList.remove('hidden')
-//     document.querySelector('#sign-out').classList.add('hidden')
-//     document.querySelector('#create-post').classList.add('hidden')
-//   }
-// }
+  const pullData = async () => {
+    try {
+      const posts = await DataStore.query(Post)
+      console.log(posts)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  
+  pullData()
+  
+  
+let currentUser = null //Create a variable
+
+const toggleNavBar = () => {
+  // if user has logged in
+  if (currentUser) {
+    document.querySelector('.logged-in').classList.add('hidden')
+    document.querySelector('.logged-in').classList.add('hidden')
+    document.querySelector('#sign-out').classList.remove('hidden') // remove 'hidden' in html
+    document.querySelector('#create-post').classList.remove('hidden')
+  } else {
+    document.querySelector('.logged-in').classList.remove('hidden')
+    document.querySelector('.logged-in').classList.remove('hidden')
+    document.querySelector('#sign-out').classList.add('hidden')
+    document.querySelector('#create-post').classList.add('hidden')
+  }
+}
+
+// Call toggleNavBar when users have signed in 
+const getCurrentUser = async () => {
+    try {
+      currentUser = await Auth.currentAuthenticatedUser()
+    } catch (err) {
+      console.log('error getting user', err)
+      currentUser = null
+    }
+    toggleNavBar()
+  }
+getCurrentUser()
+
+// Sign out handler 
+document.getElementById('sign-out').addEventListener('click', async e => {
+    try {
+        await Auth.signOut({ global: true });
+        window.location.href = '/'
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
+}) 

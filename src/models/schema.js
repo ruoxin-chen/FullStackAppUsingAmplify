@@ -85,6 +85,28 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "read",
+                                    "update"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "AdminGroup"
+                                ],
+                                "operations": [
+                                    "read",
+                                    "create",
+                                    "update",
+                                    "delete"
+                                ]
                             }
                         ]
                     }
@@ -150,6 +172,28 @@ export const schema = {
                                     "update",
                                     "delete",
                                     "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "read",
+                                    "update"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "AdminGroup"
+                                ],
+                                "operations": [
+                                    "read",
+                                    "create",
+                                    "update",
+                                    "delete"
                                 ]
                             }
                         ]
