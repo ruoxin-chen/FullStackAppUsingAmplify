@@ -20,6 +20,12 @@
       },
       "storage": {
         "binary": {}
+      },
+      "function": {
+        "testappamplifyPostConfirmation": {
+          "deploymentBucketName": "amplify-testappamplify-staging-233251-deployment",
+          "s3Key": "amplify-builds/testappamplifyPostConfirmation-4c684738737678396147-build.zip"
+        }
       }
     }
   }

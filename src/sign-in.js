@@ -5,7 +5,8 @@ Amplify.configure(config)
 
 document.querySelector('#sign-in').addEventListener('submit', async e => {
   e.preventDefault()
-  //Sign in handler
+  // Sign in handler
+  // Parse out username and password
   const username = document.querySelector('#email').value
   const password = document.querySelector('#password').value
 

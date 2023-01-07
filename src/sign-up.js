@@ -8,6 +8,7 @@ document.querySelector('#sign-up').addEventListener('submit', async e => {
   // Sign up handler
   try {
     const username = document.querySelector('#email').value
+    // Create a new user by passing in username, password, and other attributes
     const { user } = await Auth.signUp({
       username,
       password: document.querySelector('#password').value,

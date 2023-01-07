@@ -66,6 +66,40 @@
       "service": "Cognito"
     }
   },
+  "function": {
+    "testappamplifyPostConfirmation": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ],
+          "category": "api",
+          "resourceName": "testappamplify"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_testappamplifyPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "testappamplifyPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_testappamplifyPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "testappamplifyPostConfirmation"
+        }
+      ]
+    }
+  },
   "storage": {
     "binary": {
       "dependsOn": [],
