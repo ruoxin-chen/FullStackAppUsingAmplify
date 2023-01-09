@@ -4,23 +4,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home page</title>
+    <title>Interlude</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/main.min.css" />
     <script type="module" src="./src/script.js" async defer></script>
   </head>
 
   <body>
+    <img src="./img/header.png" alt="header img" class = "headerImg" />
     <header class="header">
       <img src="./img/logo.png" alt="App logo" class="logo" />
+      <h1 class = "header title">Cornell Interlude</h1>
       <div>
         <button id="sign-out" class="hidden">Sign Out</button>
       </div>
       <div class="hidden logged-in">
+        <a href="/about-us.html" id="about-us" class="button">About Us</a>
         <a href="/sign-in.html" id="sign-in" class="button">Sign In</a>
         <a href="/sign-up.html" id="sign-up" class="button">Sign Up</a>
       </div>
     </header>
+    <blockquote>
+      <br>
+      <p id = "line1">If music</p>
+      <pre>
+        be the food of love, 
+        play on.  
+      </pre>
+    </blockquote>
     <div class="container">
       <!-- <button id = "create-post">Create post</button> -->
       <div class="posts"></div>
@@ -105,4 +116,7 @@
       </form>
     </div>
   </body>
+  <footer>
+    <img src="./img/footer.png" alt="footer img" class = "footerImg" /> 
+  </footer>
 </html>
