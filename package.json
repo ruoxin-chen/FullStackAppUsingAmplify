@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "source": "index.js",
     "scripts": {
-        "start": "npx parcel index.html confirm.html sign-in.html sign-up.html",    
-        "build": "npx parcel build index.html confirm.html sign-in.html sign-up.html", 
+        "start": "npx parcel index.html confirm.html sign-in.html sign-up.html",
+        "build": "npx parcel build index.html confirm.html sign-in.html sign-up.html",
         "amplify-modelgen": "node amplify/scripts/amplify-modelgen.js",
         "amplify-push": "node amplify/scripts/amplify-push.js"
     },
@@ -22,8 +22,8 @@
         "querystring-es3": "^0.2.1"
     },
     "dependencies": {
+        "@aws-amplify/datastore": "^3.14.6",
         "aws-amplify": "^4.3.45",
-        "typescript": "^4.9.4",
-        "@aws-amplify/datastore": "^3.14.6"
+        "typescript": "^4.9.4"
     }
 }
